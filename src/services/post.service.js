@@ -1,16 +1,22 @@
+import postRepository from "../repositories/post.repository.js";
+
 class PostService {
     async createPost(author, data) {
-        // TODO add post. data example: {
-        // 	"title": "JavaEE",
-        // 	"content": "Java is the best for backend",
-        // 	"tags":["Java", "Spring", "backend", "JEE"]
-        // }
-        throw new Error('Not implemented');
+        const postData = { author, ...data };
+        if (Array.isArray(data?.tags)) {
+            postData.tags = [...new Set(data.tags)];
+        }
+
+        return await postRepository.create(postData);
     }
 
     async getPostById(id) {
-        // TODO get post by id
-        throw new Error('Not implemented');
+        const post = await postRepository.findById(id);
+        if (!post) {
+            throw new Error(`Post with id ${id} not found`);
+        }
+
+        return post;
     }
 }
 
