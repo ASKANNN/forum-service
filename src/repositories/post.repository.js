@@ -6,7 +6,7 @@ class PostRepository {
     }
 
     async findById(id) {
-        return Post.findById(id).exec();
+        return Post.findById(id);
     }
 }
 
