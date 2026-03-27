@@ -2,11 +2,11 @@ import Post from "../models/post.model.js";
 
 class PostRepository {
     async create(data) {
-        return await Post.create(data);
+        return Post.create(data);
     }
 
     async findById(id) {
-        return await Post.findById(id).exec();
+        return Post.findById(id).exec();
     }
 }
 
